@@ -3,10 +3,11 @@ import React from "react";
 class Conexion extends React.Component{
     constructor(props){
         super(props);
-        this.state={usuario:"",texto:""}
+        this.state={usuario:"",texto:"",id:""}
         
         this.usuario=this.usu.bind(this);
         this.texto=this.text.bind(this);
+        this.id=this.identificador(this);
         this.enviar=this.mandar.bind(this);
     }
         usu(event){
@@ -15,12 +16,15 @@ class Conexion extends React.Component{
         text(event){
             this.setState({texto:event.target.value});
         }
+        identificador(event){
+            this.setState({id:event.target});
+        }
         mandar(event){
-            event.preventDefault();
             var data= new FormData();
             data.append("usuario",this.state.usuario);
             data.append("texto",this.state.texto);
-            fetch("http://localhost/React/chat/php/conexion.php",{
+            data.append("id",this.state.id);
+            fetch("http://localhost/React/Trabaja-react-chat/chat/php/conexion.php",{
                 method: "POST",
                 body: data 
             })
