@@ -21,7 +21,7 @@ class Conexion extends React.Component{
         }
         mandar(event){
             var data= new FormData();
-            data.append("usuario",this.state.usuario);
+            data.append("usuario",localStorage.getItem("nombre"));
             data.append("texto",this.state.texto);
             data.append("id",this.state.id);
             fetch("http://localhost/React/Trabaja-react-chat/chat/php/conexion.php",{
@@ -35,7 +35,7 @@ class Conexion extends React.Component{
         render(){
             return(
                 <form>
-                    <p>Usuario:<input type="text" onChange={this.usuario}></input></p>
+                    <p>Usuario:{localStorage.getItem("nombre")}</p>
                     <p>Texto:<input type="text" onChange={this.texto}></input></p>
                     <p><button onClick={this.enviar}>Enviar</button></p>
                 </form>
