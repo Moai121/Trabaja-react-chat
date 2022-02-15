@@ -25,8 +25,9 @@ class Login extends React.Component{
             body:data
         })
         .then(
-            res=>res.json()
-        )
+            res=>res.json(),
+            window.location.href="/Conexion"
+                    )
         .catch(
             error=>console.error("Fallo",error)
         )
