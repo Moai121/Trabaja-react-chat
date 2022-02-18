@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './assests/css/index.css';
 import App from './App';
-import Enrutar from './componentes/Enrutamiento';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Enrutar/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

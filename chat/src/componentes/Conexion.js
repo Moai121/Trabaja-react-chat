@@ -1,5 +1,6 @@
 import React from "react";
-
+import enviar from "../assests/imagenes/enviar.png";
+import salir from "../assests/imagenes/salir.png";
 class Conexion extends React.Component{
     constructor(props){
         super(props);
@@ -20,6 +21,10 @@ class Conexion extends React.Component{
         identificador(event){
             this.setState({id:event.target});
         }
+        volver(event){
+            event.preventDefault();
+            window.location.href="/login"
+        }
         mandar(event){
             var data= new FormData();
             data.append("usuario",localStorage.getItem("nombre"));
@@ -28,6 +33,8 @@ class Conexion extends React.Component{
             fetch("http://localhost/React/Trabaja-react-chat/chat/php/conexion.php",{
                 method: "POST",
                 body: data 
+            })
+            fetch("http://localhost/React/Trabaja-react-chat/chat/php/mostrar.php",{
             })
             .then(
                 res => 
@@ -47,22 +54,27 @@ class Conexion extends React.Component{
                 )
             .then(
                 response=> console.log("Correcto",this.setState({usuario:response}) ),
-                window.location.href="/mostrar"
+                window.location.href="/Conexion"
                 );               
         }
         render(){
             return(
                 <div>
-                <form>
-                    <p>Usuario:{localStorage.getItem("nombre")}</p>
-                    <p>Texto:<input type="text" onChange={this.texto}></input></p>
-                    <p><button onClick={this.enviar}>Enviar</button></p>
+                <form className="formulario">
+                    <img src={salir} onClick={this.volver} className="salir"></img>
+                    <div className="usuario">Usuario:{localStorage.getItem("nombre")}</div>
                 </form>
-                <ul>
+                <div className="chat">
+                    <ul>
                         {    
-                        this.state.mensajes.map(lol=>(<li key={lol.n\u00ba} >{lol.usuario}: {lol.texto}</li>))
-                        }
-                        </ul>  
+                        this.state.mensajes.map(lol=>(<p className="message"><li key={lol.n\u00ba} >{lol.usuario}: {lol.texto}</li></p>))
+                        } 
+                    </ul>                     
+                </div>
+                <div className="responder">
+                    Texto:<input type="text" onChange={this.texto} className="mensaje"></input>
+                    <img src={enviar} onClick={this.enviar} className="enviar"></img> 
+                </div>
                 </div>
             );
         }
@@ -80,16 +92,5 @@ class Conexion extends React.Component{
                     (error) =>{this.state({error});
                 })
             }
-            // render(){
-            //      return(
-            //         <div>
-            //             <ul>
-            //             {    
-            //             this.state.mensajes.map(lol=>(<li key={lol.n\u00ba} >{lol.usuario}: {lol.texto}</li>))
-            //             }
-            //             </ul>               
-            //         </div>        
-            //     );
-            // }
         }
 export default Conexion;
