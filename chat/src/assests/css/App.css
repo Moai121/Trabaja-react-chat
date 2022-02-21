@@ -51,10 +51,6 @@
   height: 800px;
   width: 700px;
 }
-li{
-  list-style:none;
-  display: flex;
-}
 .responder{
   display:flex;
 
@@ -83,7 +79,20 @@ li{
   display: flex;
 }
 .message{
+justify-content: end;
+display: flex;
+}
+.message p{
   background-color:#545250 ;
+  color: whitesmoke;
+  border-radius: 5px;
+}
+.message2{
+  justify-content: start;
+display: flex;
+}
+.message2 p{
+  background-color:brown ;
   color: whitesmoke;
   border-radius: 5px;
 }

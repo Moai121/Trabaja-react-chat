@@ -58,6 +58,7 @@ class Conexion extends React.Component{
                 );               
         }
         render(){
+            const {mensajes}=this.state;
             return(
                 <div>
                 <form className="formulario">
@@ -65,11 +66,14 @@ class Conexion extends React.Component{
                     <div className="usuario">Usuario:{localStorage.getItem("nombre")}</div>
                 </form>
                 <div className="chat">
-                    <ul>
-                        {    
-                        this.state.mensajes.map(lol=>(<p className="message"><li key={lol.n\u00ba} >{lol.usuario}: {lol.texto}</li></p>))
-                        } 
-                    </ul>                     
+                        {mensajes.map(fer=>{
+                            if(fer.usuario===localStorage.getItem("nombre")){
+                                return <div className="message"><p key={fer.n\u00ba}>{fer.usuario}: {fer.texto}</p></div>
+                            }
+                            else{
+                                return <div className="message2"><p key={fer.n\u00ba}>{fer.usuario}: {fer.texto}</p></div>
+                            }
+                        })}                                             
                 </div>
                 <div className="responder">
                     Texto:<input type="text" onChange={this.texto} className="mensaje"></input>
